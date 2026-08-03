@@ -1,5 +1,21 @@
 ---
+import useDemo from "../hooks/useDemo";
+import Layout from "../layouts/Layout.astro";
 
+const { renderDemo } = useDemo();
+
+const DemoPage = renderDemo({
+  demoKey: "nutritionist",
+  path: "privacyPolicy",
+});
 ---
 
-<h1>Privacy Policy</h1>
+{
+  DemoPage ? (
+    <DemoPage />
+  ) : (
+    <Layout title="Politica de privacidad">
+      <h1>Privacy Policy</h1>
+    </Layout>
+  )
+}

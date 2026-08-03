@@ -1,7 +1,118 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
+import NutritionistLayout from "../components/NutritionistLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import { services } from "../data";
 ---
 
-<Layout title="Blog">
-  <h1>Hola mundo esto es demo nutritionist</h1>
-</Layout>
+<NutritionistLayout
+  title="Consultas nutricionales | Claudia Valenzuela"
+  description="Consulta nutricional personalizada, relación saludable con la comida, bienestar digestivo y acompañamiento online."
+  currentPath="/services"
+>
+  <PageHero
+    eyebrow="Consultas nutricionales"
+    title="Un acompañamiento que se adapta a tu momento."
+    intro="Cada proceso comienza escuchando. Desde ahí construimos objetivos claros, herramientas prácticas y un ritmo que puedas sostener."
+    compact
+  />
+
+  <section class="section services-list">
+    <div class="shell services-grid">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </section>
+
+  <section class="section process-section">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="Cómo funciona"
+        title="Un proceso claro desde el primer encuentro."
+        intro="No necesitas llegar con un objetivo perfecto. Lo definimos juntos y lo revisamos a medida que avanzas."
+      />
+      <ol class="process-grid">
+        <li><span>01</span><div><h3>Nos conocemos</h3><p>Conversamos sobre tu salud, rutinas, relación con la comida y qué te gustaría que fuera diferente.</p></div></li>
+        <li><span>02</span><div><h3>Ordenamos prioridades</h3><p>Traducimos toda esa información en dos o tres objetivos concretos, realistas y relevantes para ti.</p></div></li>
+        <li><span>03</span><div><h3>Probamos herramientas</h3><p>Diseñamos estrategias y materiales que puedas usar en compras, cocina, trabajo y vida social.</p></div></li>
+        <li><span>04</span><div><h3>Ajustamos en equipo</h3><p>En cada control revisamos lo que funcionó, lo que estorbó y el siguiente paso que tiene sentido.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-dark included-section">
+    <div class="shell included-grid">
+      <div>
+        <p class="eyebrow eyebrow-light">En todas las consultas</p>
+        <h2>Más que una pauta: claridad para tomar decisiones.</h2>
+      </div>
+      <ul>
+        <li><span aria-hidden="true">✓</span> Evaluación nutricional y de hábitos completa</li>
+        <li><span aria-hidden="true">✓</span> Resumen escrito de los acuerdos</li>
+        <li><span aria-hidden="true">✓</span> Materiales simples y visuales</li>
+        <li><span aria-hidden="true">✓</span> Seguimiento entre sesiones según programa</li>
+        <li><span aria-hidden="true">✓</span> Coordinación con tu equipo de salud</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="shell faq-grid">
+      <div>
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Antes de reservar</h2>
+        <p class="lead">Si tu pregunta no está aquí, escríbeme. Te responderé personalmente dentro de un día hábil.</p>
+        <a class="text-link" href="/contact">Hacer otra pregunta <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="faq-list">
+        <details open><summary>¿Necesito exámenes antes de la consulta?</summary><p>No son obligatorios. Si tienes resultados recientes, puedes llevarlos. Después de evaluarte te indicaré si conviene conversar con tu médico sobre algún examen.</p></details>
+        <details><summary>¿Trabajas con planes para bajar de peso?</summary><p>Podemos conversar sobre cambios de composición corporal, pero el proceso no se centra en perseguir un número. Priorizamos salud, conductas sostenibles y una relación segura con la comida.</p></details>
+        <details><summary>¿La consulta online es igual de completa?</summary><p>Sí. La evaluación, los materiales y el seguimiento son los mismos. Solo necesitas conexión estable y un espacio donde puedas conversar con tranquilidad.</p></details>
+        <details><summary>¿Atiendes a niños?</summary><p>Actualmente mi consulta está dirigida a personas desde los 18 años. Puedo recomendarte colegas especializados en nutrición pediátrica.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section booking-banner">
+    <div class="shell booking-inner">
+      <div><p class="eyebrow">¿No sabes cuál elegir?</p><h2>Partamos con una primera consulta.</h2></div>
+      <div><p>Revisaremos tu situación completa y te recomendaré el formato de acompañamiento más adecuado.</p><a class="button" href="/contact">Reservar mi hora <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </section>
+</NutritionistLayout>
+
+<style>
+  .services-list { background: var(--cream); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .process-section { background: var(--surface); }
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; list-style: none; }
+  .process-grid li { min-height: 22rem; border: 1px solid var(--border); border-right: 0; padding: 1.7rem; background: var(--paper); }
+  .process-grid li:first-child { border-radius: 2rem 0 0 2rem; }
+  .process-grid li:last-child { border-right: 1px solid var(--border); border-radius: 0 2rem 2rem 0; }
+  .process-grid > li > span { display: grid; width: 2.4rem; height: 2.4rem; place-items: center; border-radius: 50%; background: var(--limeLight); color: var(--green); font-size: .7rem; font-weight: 700; }
+  .process-grid li div { margin-top: 6rem; }
+  .process-grid h3 { font-size: 1.7rem; }
+  .process-grid p { color: var(--muted); font-size: .82rem; }
+  .included-section { padding: clamp(5rem, 9vw, 8rem) 0; }
+  .included-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(3rem, 8vw, 8rem); }
+  .included-grid h2 { max-width: 12ch; margin-bottom: 0; }
+  .included-grid ul { margin: 0; padding: 0; list-style: none; }
+  .included-grid li { display: flex; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,.15); padding: 1.1rem 0; color: rgba(255,255,255,.82); }
+  .included-grid li span { color: var(--yellow); font-weight: 700; }
+  .faq-section { background: var(--cream); }
+  .faq-grid { display: grid; grid-template-columns: .7fr 1fr; gap: clamp(3rem, 9vw, 8rem); }
+  .faq-grid h2 { font-size: clamp(2.7rem, 5vw, 4rem); }
+  .faq-list details { border-top: 1px solid var(--border); padding: 1.35rem 0; }
+  .faq-list details:last-child { border-bottom: 1px solid var(--border); }
+  .faq-list summary { position: relative; padding-right: 2rem; cursor: pointer; list-style: none; color: var(--greenDark); font-family: var(--font-display); font-size: 1.3rem; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: "+"; position: absolute; right: 0; color: var(--terracotta); font-family: var(--font-body); }
+  .faq-list details[open] summary::after { content: "−"; }
+  .faq-list p { margin: 1rem 2rem 0 0; color: var(--muted); font-size: .88rem; }
+  .booking-banner { background: var(--cream); padding-top: 0; }
+  .booking-inner { display: grid; grid-template-columns: 1fr .7fr; gap: 3rem; border-radius: 2rem; padding: clamp(2.5rem, 6vw, 5rem); background: var(--yellow); }
+  .booking-inner h2 { margin-bottom: 0; }
+  .booking-inner > div:last-child { display: flex; align-items: flex-start; flex-direction: column; justify-content: space-between; }
+  @media (max-width: 850px) { .process-grid { grid-template-columns: 1fr 1fr; } .process-grid li, .process-grid li:first-child, .process-grid li:last-child { border: 1px solid var(--border); border-radius: 0; } .included-grid, .faq-grid, .booking-inner { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .services-grid, .process-grid { grid-template-columns: 1fr; } .process-grid li { min-height: 17rem; } .process-grid li div { margin-top: 3rem; } }
+</style>

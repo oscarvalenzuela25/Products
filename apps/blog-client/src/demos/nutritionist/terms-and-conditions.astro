@@ -1,5 +1,26 @@
 ---
-
+import NutritionistLayout from "./components/NutritionistLayout.astro";
 ---
 
-<h1>Term and conditions</h1>
+<NutritionistLayout title="Términos y condiciones | Claudia Valenzuela" description="Condiciones de uso del sitio y de las solicitudes de consulta de Claudia Valenzuela Nutrición." noIndex>
+  <section class="legal-hero"><div class="shell"><p class="eyebrow">Información legal</p><h1>Términos y condiciones</h1><p>Última actualización: 2 de agosto de 2026</p></div></section>
+  <section class="section legal-content"><div class="shell legal-grid"><aside><strong>En esta página</strong><a href="#sitio">Uso del sitio</a><a href="#reserva">Solicitudes de hora</a><a href="#salud">Información de salud</a><a href="#cancelacion">Cancelaciones</a></aside><article><p class="lead">Al navegar por este sitio aceptas las siguientes condiciones. El contenido tiene fines informativos y la solicitud enviada no constituye una reserva confirmada.</p><section id="sitio"><h2>1. Uso del sitio</h2><p>Puedes consultar y compartir el contenido para uso personal. No está permitido reproducirlo con fines comerciales ni presentarlo como asesoría profesional propia.</p></section><section id="reserva"><h2>2. Solicitudes de hora</h2><p>Completar el formulario inicia una solicitud de contacto. La consulta solo queda confirmada después de recibir una respuesta con fecha, modalidad y condiciones de pago.</p></section><section id="salud"><h2>3. Información de salud</h2><p>Los artículos y recursos no reemplazan la evaluación de un profesional. Ante síntomas intensos, una urgencia o riesgo para tu salud, contacta a un servicio asistencial.</p></section><section id="cancelacion"><h2>4. Cambios y cancelaciones</h2><p>En una implementación real, las horas podrían reprogramarse sin costo avisando con al menos 24 horas de anticipación. Las condiciones específicas se informarían antes de confirmar.</p></section><section><h2>5. Propiedad intelectual</h2><p>Los textos, identidad visual y materiales descargables pertenecerían a Claudia Valenzuela Nutrición, salvo imágenes acreditadas a sus respectivos autores o bancos de imágenes.</p></section><div class="demo-note"><strong>Nota de demo</strong><p>Este sitio y sus condiciones son ficticios. No procesa pagos ni confirma consultas reales.</p></div></article></div></section>
+</NutritionistLayout>
+
+<style>
+  .legal-hero { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--surface); }
+  .legal-hero h1 { margin-bottom: 1rem; font-size: clamp(3.3rem, 7vw, 6rem); }
+  .legal-hero p:last-child { color: var(--muted); font-size: .75rem; }
+  .legal-content { background: var(--cream); }
+  .legal-grid { display: grid; grid-template-columns: .3fr 1fr; gap: clamp(3rem, 9vw, 8rem); }
+  aside { position: sticky; top: 2rem; display: flex; align-self: start; flex-direction: column; border-top: 2px solid var(--terracotta); padding-top: 1rem; }
+  aside strong { margin-bottom: .75rem; font-size: .7rem; text-transform: uppercase; }
+  aside a { min-height: 2rem; color: var(--muted); font-size: .72rem; }
+  article { max-width: 48rem; }
+  article > section { margin: 4rem 0; }
+  article h2 { font-size: clamp(2rem, 4vw, 3rem); }
+  article section p { color: var(--muted); }
+  .demo-note { border-radius: 1rem; padding: 1.5rem; background: var(--limeLight); }
+  .demo-note p { margin: .4rem 0 0; color: var(--muted); font-size: .82rem; }
+  @media (max-width: 720px) { .legal-grid { grid-template-columns: 1fr; } aside { position: static; } }
+</style>

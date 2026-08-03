@@ -1,5 +1,21 @@
 ---
+import useDemo from "../hooks/useDemo";
+import Layout from "../layouts/Layout.astro";
 
+const { renderDemo } = useDemo();
+
+const DemoPage = renderDemo({
+  demoKey: "nutritionist",
+  path: "about",
+});
 ---
 
-<h1>About nutricionista</h1>
+{
+  DemoPage ? (
+    <DemoPage />
+  ) : (
+    <Layout title="Acerca de">
+      <h1>About</h1>
+    </Layout>
+  )
+}

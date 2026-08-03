@@ -1,9 +1,219 @@
 ---
-import Button from "../../components/Button";
-import Layout from "../../layouts/Layout.astro";
+import ArticleCard from "./components/ArticleCard.astro";
+import NutritionistLayout from "./components/NutritionistLayout.astro";
+import SectionHeading from "./components/SectionHeading.astro";
+import ServiceCard from "./components/ServiceCard.astro";
+import { articles, services } from "./data";
 ---
 
-<Layout title="Home nutricionista">
-  <h1>Home nutricionista</h1>
-  <Button client:load>Button Test</Button>
-</Layout>
+<NutritionistLayout
+  title="Claudia Valenzuela | Nutricionista en Santiago y online"
+  description="Acompañamiento nutricional cercano y basado en evidencia para mejorar tu relación con la comida. Consultas en Providencia y online."
+  currentPath="/"
+>
+  <section class="home-hero">
+    <div class="hero-leaf leaf-one" aria-hidden="true"></div>
+    <div class="hero-leaf leaf-two" aria-hidden="true"></div>
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Nutrición cercana · Sin dietas extremas</p>
+        <h1>Comer bien también puede <em>sentirse bien.</em></h1>
+        <p class="lead">Te acompaño a construir una alimentación que cuide tu salud, respete tu historia y sí funcione en tu vida real.</p>
+        <div class="hero-actions">
+          <a class="button" href="/contact">Quiero agendar <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="/services">Conocer las consultas <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-faces" aria-hidden="true"><span>C</span><span>M</span><span>J</span></div>
+          <p><strong>4,9 / 5</strong><br />Valoración de pacientes</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="image-frame">
+          <img
+            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1200&q=85"
+            alt="Claudia, nutricionista, sonriendo en un ambiente luminoso"
+            width="800"
+            height="980"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-note">
+          <span aria-hidden="true">✦</span>
+          <p>Más de <strong>6 años</strong> acompañando procesos reales</p>
+        </div>
+        <div class="hero-stamp" aria-hidden="true">Cuidar · Nutrir · Disfrutar ·</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip" aria-label="Experiencia profesional">
+    <div class="shell trust-grid">
+      <div><strong>+350</strong><span>procesos acompañados</span></div>
+      <div><strong>6+</strong><span>años de experiencia</span></div>
+      <div><strong>100%</strong><span>enfoque personalizado</span></div>
+      <p>Atención para adultos<br />presencial y online</p>
+    </div>
+  </section>
+
+  <section class="section services-section">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="Cómo puedo ayudarte"
+        title="Tu proceso merece una estrategia tan única como tú."
+        intro="No trabajo con plantillas universales. Elegimos el tipo de acompañamiento según tu historia, tus síntomas y lo que hoy necesitas."
+      />
+      <div class="services-grid">
+        {services.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section about-preview">
+    <div class="shell about-grid">
+      <div class="about-image-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=1200&q=85"
+          alt="Preparación de alimentos frescos en una cocina luminosa"
+          width="860"
+          height="1050"
+          loading="lazy"
+        />
+        <div class="about-card">
+          <span>Mi enfoque</span>
+          <strong>Ciencia que se adapta a tu cotidiano.</strong>
+        </div>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">Hola, soy Claudia</p>
+        <h2>La nutrición no debería alejarte de tu vida.</h2>
+        <p class="lead">Soy nutricionista con más de seis años de experiencia en consulta individual. Mi trabajo une evidencia, escucha y herramientas simples para que comer deje de sentirse como una tarea pendiente.</p>
+        <blockquote>“No busco que comas perfecto. Busco que tengas recursos para cuidarte incluso cuando la semana se pone difícil.”</blockquote>
+        <a class="button button-outline" href="/about">Conoce mi forma de trabajar <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark testimonial-band">
+    <div class="shell testimonial-grid">
+      <div>
+        <p class="eyebrow eyebrow-light">Palabras que nutren</p>
+        <span class="quote-mark" aria-hidden="true">“</span>
+      </div>
+      <blockquote>
+        <p>Por primera vez sentí que una profesional miraba mi vida completa y no solo lo que había comido. Hoy tengo más energía y mucha menos culpa.</p>
+        <footer><strong>Marcela, 34 años</strong><span>Proceso de 4 meses · atención online</span></footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="section resources-section">
+    <div class="shell">
+      <div class="resources-heading">
+        <SectionHeading
+          eyebrow="Para leer con calma"
+          title="Ideas que te ayudan a comer con más confianza."
+          intro="Información clara, sin miedo ni reglas disfrazadas de bienestar."
+        />
+        <a class="text-link" href="/blog">Ver todos los recursos <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="articles-grid">
+        {articles.map((article) => <ArticleCard article={article} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta-section">
+    <div class="shell final-cta">
+      <div class="cta-fruit" aria-hidden="true"></div>
+      <p class="eyebrow">Empecemos por algo posible</p>
+      <h2>No necesitas tener todo resuelto para pedir ayuda.</h2>
+      <p>Cuéntame qué te está pasando. En una primera sesión ordenamos prioridades y definimos un camino amable y concreto.</p>
+      <a class="button button-light" href="/contact">Agendar primera consulta <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+</NutritionistLayout>
+
+<style>
+  .home-hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 8vw, 7rem) 0 clamp(5rem, 9vw, 8rem); background: var(--cream); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(24rem, .8fr); align-items: center; gap: clamp(3rem, 8vw, 8rem); }
+  .hero-copy h1 { max-width: 10.3ch; margin-bottom: 1.75rem; }
+  .hero-copy h1 em { color: var(--green); font-weight: 400; }
+  .hero-copy .lead { max-width: 38rem; }
+  .hero-actions { display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; }
+  .hero-proof { display: flex; align-items: center; gap: 1rem; margin-top: 3.4rem; }
+  .proof-faces { display: flex; }
+  .proof-faces span { display: grid; width: 2.2rem; height: 2.2rem; place-items: center; margin-left: -.4rem; border: 2px solid var(--cream); border-radius: 50%; background: var(--sage); color: var(--greenDark); font-size: .7rem; font-weight: 700; }
+  .proof-faces span:nth-child(2) { background: var(--terracottaLight); }
+  .proof-faces span:nth-child(3) { background: var(--yellow); }
+  .hero-proof p { margin: 0; color: var(--muted); font-size: .68rem; line-height: 1.45; }
+  .hero-proof strong { color: var(--text); font-size: .85rem; }
+  .hero-visual { position: relative; padding: 1.2rem; }
+  .image-frame { position: relative; }
+  .image-frame::before { content: ""; position: absolute; z-index: -1; inset: -1.25rem 1.2rem 1.2rem -1.25rem; border: 1px solid var(--sage); border-radius: 48% 48% 3rem 3rem; transform: rotate(-3deg); }
+  .image-frame img { width: 100%; aspect-ratio: .78; border-radius: 48% 48% 3rem 3rem; object-fit: cover; object-position: center 30%; }
+  .hero-note { position: absolute; right: -1rem; bottom: 5rem; display: flex; width: 12rem; align-items: center; gap: .75rem; border-radius: 1rem; padding: 1rem; background: white; box-shadow: var(--shadow-soft); transform: rotate(3deg); }
+  .hero-note > span { color: var(--terracotta); font-size: 1.5rem; }
+  .hero-note p { margin: 0; color: var(--muted); font-size: .68rem; line-height: 1.45; }
+  .hero-note strong { color: var(--greenDark); }
+  .hero-stamp { position: absolute; top: 1rem; left: -2rem; display: grid; width: 7.2rem; height: 7.2rem; place-items: center; border-radius: 50%; background: var(--yellow); color: var(--greenDark); font-size: .58rem; font-weight: 700; letter-spacing: .08em; text-align: center; text-transform: uppercase; transform: rotate(-12deg); }
+  .hero-leaf { position: absolute; border: 1px solid var(--sage); border-radius: 85% 15% 80% 20%; }
+  .leaf-one { width: 16rem; height: 8rem; right: -5rem; top: 5rem; transform: rotate(25deg); }
+  .leaf-two { width: 12rem; height: 5rem; left: -5rem; bottom: 2rem; transform: rotate(-22deg); background: var(--limeLight); }
+  .trust-strip { border-block: 1px solid var(--border); background: var(--surface); }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr) 1.35fr; align-items: stretch; }
+  .trust-grid > * { margin: 0; border-left: 1px solid var(--border); padding: 1.5rem clamp(1rem, 3vw, 2rem); }
+  .trust-grid > *:last-child { border-right: 1px solid var(--border); }
+  .trust-grid div { display: flex; align-items: baseline; gap: .7rem; }
+  .trust-grid strong { font-family: var(--font-display); font-size: 2.3rem; font-weight: 500; }
+  .trust-grid span, .trust-grid p { color: var(--muted); font-size: .68rem; line-height: 1.45; }
+  .services-section { background: var(--cream); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .about-preview { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: .84fr 1fr; align-items: center; gap: clamp(3rem, 9vw, 8rem); }
+  .about-image-wrap { position: relative; }
+  .about-image-wrap > img { width: 100%; aspect-ratio: .78; border-radius: 10rem 10rem 1.5rem 1.5rem; object-fit: cover; }
+  .about-card { position: absolute; right: -2rem; bottom: 2.5rem; max-width: 14rem; border-radius: 1rem; padding: 1.25rem; background: var(--yellow); color: var(--greenDark); transform: rotate(-3deg); }
+  .about-card span { display: block; margin-bottom: .45rem; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .about-card strong { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; line-height: 1.08; }
+  .about-copy h2 { margin-bottom: 1.5rem; }
+  .about-copy blockquote { margin: 2rem 0; border-left: 2px solid var(--terracotta); padding-left: 1.5rem; color: var(--greenDark); font-family: var(--font-display); font-size: 1.45rem; line-height: 1.35; }
+  .testimonial-band { padding: clamp(4rem, 8vw, 7rem) 0; }
+  .testimonial-grid { display: grid; grid-template-columns: .35fr 1fr; gap: 3rem; }
+  .quote-mark { color: var(--yellow); font-family: var(--font-display); font-size: 8rem; line-height: .65; }
+  .testimonial-grid blockquote { margin: 0; }
+  .testimonial-grid blockquote > p { max-width: 22ch; margin-bottom: 2.5rem; font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 1.05; }
+  .testimonial-grid footer { display: flex; flex-direction: column; gap: .25rem; }
+  .testimonial-grid footer strong { font-size: .85rem; }
+  .testimonial-grid footer span { color: rgba(255,255,255,.58); font-size: .7rem; }
+  .resources-section { background: var(--cream); }
+  .resources-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+  .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .final-cta-section { background: var(--cream); }
+  .final-cta { position: relative; overflow: hidden; border-radius: 2.5rem; padding: clamp(3rem, 7vw, 6rem); background: var(--terracotta); color: white; text-align: center; }
+  .final-cta .eyebrow { justify-content: center; color: white; }
+  .final-cta h2 { max-width: 18ch; margin-inline: auto; }
+  .final-cta > p:not(.eyebrow) { max-width: 40rem; margin: 1.5rem auto 2rem; color: rgba(255,255,255,.84); }
+  .cta-fruit { position: absolute; top: -6rem; right: -4rem; width: 15rem; height: 15rem; border: 2rem solid rgba(255,255,255,.1); border-radius: 50%; }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy { max-width: 44rem; }
+    .hero-visual { max-width: 35rem; margin-inline: auto; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust-grid > *:last-child { border-right: 0; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-image-wrap { max-width: 34rem; }
+    .articles-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 650px) {
+    .hero-actions { align-items: flex-start; flex-direction: column; }
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+    .trust-grid div { align-items: flex-start; flex-direction: column; gap: 0; }
+    .trust-grid > * { border-bottom: 1px solid var(--border); }
+    .services-grid, .articles-grid { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .testimonial-grid > div { display: flex; justify-content: space-between; }
+    .resources-heading { align-items: flex-start; flex-direction: column; }
+    .about-card { right: .5rem; }
+  }
+</style>

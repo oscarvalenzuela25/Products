@@ -1,0 +1,40 @@
+---
+interface Props {
+  service: {
+    slug: string;
+    number: string;
+    title: string;
+    short: string;
+    duration: string;
+  };
+}
+
+const { service } = Astro.props;
+---
+
+<article class="service-card">
+  <div class="service-top">
+    <span>{service.number}</span>
+    <span class="service-seed" aria-hidden="true"></span>
+  </div>
+  <h3>{service.title}</h3>
+  <p>{service.short}</p>
+  <div class="service-bottom">
+    <small>{service.duration}</small>
+    <a href={`/services/${service.slug}`} aria-label={`Conocer ${service.title}`}>Conocer más <span aria-hidden="true">↗</span></a>
+  </div>
+</article>
+
+<style>
+  .service-card { display: flex; min-height: 26rem; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.5rem, 3vw, 2.3rem); background: var(--paper); transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease; }
+  .service-card:hover { transform: translateY(-.5rem); background: var(--limeLight); box-shadow: var(--shadow-soft); }
+  .service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: auto; color: var(--green); font-size: .75rem; font-weight: 700; }
+  .service-seed { width: 1.6rem; height: 2.35rem; border: 1px solid var(--sage); border-radius: 80% 20% 80% 20%; transform: rotate(35deg); }
+  h3 { max-width: 12ch; margin: 3rem 0 1.1rem; }
+  p { margin-bottom: 2rem; color: var(--muted); font-size: .92rem; }
+  .service-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--border); padding-top: 1.2rem; }
+  small { color: var(--muted); font-size: .68rem; }
+  a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .45rem; color: var(--greenDark); font-size: .76rem; font-weight: 700; }
+  a span { transition: transform .2s ease; }
+  a:hover span { transform: translate(.15rem, -.15rem); }
+</style>

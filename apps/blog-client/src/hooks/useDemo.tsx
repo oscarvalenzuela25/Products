@@ -15,7 +15,12 @@ import NutritionistNotFound from "../demos/nutritionist/not-found.astro";
 
 const NUTRITIONIST = "nutritionist";
 
-type DemoKeys = typeof NUTRITIONIST;
+export type DemoKey = typeof NUTRITIONIST;
+
+export interface DemoOption {
+  key: DemoKey;
+  label: string;
+}
 
 type Paths =
   | "home"
@@ -35,10 +40,10 @@ type Paths =
 const useDemo = () => {
   const isDemo = getSecret("DEMO") === "true";
 
-  const availableDemos: { key: DemoKeys; label: string }[] = [
+  const availableDemos: DemoOption[] = [
     {
       key: NUTRITIONIST,
-      label: "Nutrisionista",
+      label: "Nutricionista",
     },
   ];
 
@@ -46,7 +51,7 @@ const useDemo = () => {
     demoKey,
     path,
   }: {
-    demoKey: DemoKeys;
+    demoKey: DemoKey;
     path: Paths;
   }) => {
     if (!isDemo) return null;

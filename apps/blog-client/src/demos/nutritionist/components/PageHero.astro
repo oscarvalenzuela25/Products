@@ -1,0 +1,55 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  image?: string;
+  imageAlt?: string;
+  compact?: boolean;
+}
+
+const { eyebrow, title, intro, image, imageAlt = "", compact = false } = Astro.props;
+---
+
+<section class:list={["page-hero", { compact, "with-image": image }]}>
+  <div class="hero-orb hero-orb-one" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-two" aria-hidden="true"></div>
+  <div class="shell page-hero-grid">
+    <div class="page-hero-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="lead">{intro}</p>
+    </div>
+    {image && (
+      <figure class="page-hero-image">
+        <img src={image} alt={imageAlt} width="760" height="880" fetchpriority="high" />
+        <span aria-hidden="true">Bienestar<br />sin extremos</span>
+      </figure>
+    )}
+  </div>
+</section>
+
+<style>
+  .page-hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 10vw, 9rem) 0; background: var(--surface); }
+  .page-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: 4rem; }
+  .with-image .page-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(20rem, .66fr); }
+  .page-hero-copy { max-width: 55rem; }
+  .page-hero h1 { max-width: 12ch; margin-bottom: 1.75rem; }
+  .page-hero .lead { max-width: 43rem; margin-bottom: 0; }
+  .page-hero-image { position: relative; margin: 0; }
+  .page-hero-image::before { content: ""; position: absolute; z-index: -1; inset: -1.2rem 2rem 1.2rem -1.2rem; border: 1px solid var(--sage); border-radius: 45% 45% 48% 35%; transform: rotate(-3deg); }
+  .page-hero-image img { width: 100%; aspect-ratio: .84; border-radius: 46% 46% 50% 30%; object-fit: cover; }
+  .page-hero-image span { position: absolute; right: -1rem; bottom: 2rem; display: grid; width: 7.5rem; height: 7.5rem; place-items: center; border-radius: 50%; background: var(--yellow); color: var(--greenDark); font-family: var(--font-display); font-size: 1.05rem; line-height: 1.05; text-align: center; transform: rotate(7deg); }
+  .hero-orb { position: absolute; border-radius: 50%; opacity: .65; filter: blur(1px); }
+  .hero-orb-one { width: 18rem; height: 18rem; top: -9rem; right: 22%; background: var(--limeLight); }
+  .hero-orb-two { width: 10rem; height: 10rem; bottom: -6rem; left: 7%; background: var(--terracottaLight); }
+  .compact { padding: clamp(4rem, 7vw, 6.5rem) 0; }
+  .compact h1 { max-width: 16ch; }
+  @media (max-width: 800px) {
+    .with-image .page-hero-grid { grid-template-columns: 1fr; }
+    .page-hero-image { max-width: 32rem; }
+  }
+  @media (max-width: 500px) {
+    .page-hero-image span { right: 0; width: 6rem; height: 6rem; font-size: .9rem; }
+  }
+</style>

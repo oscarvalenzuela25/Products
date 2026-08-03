@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  align?: "left" | "center";
+  light?: boolean;
+}
+
+const { eyebrow, title, intro, align = "left", light = false } = Astro.props;
+---
+
+<header class:list={["section-heading", align, { light }]}>
+  <p class:list={["eyebrow", { "eyebrow-light": light }]}>{eyebrow}</p>
+  <h2>{title}</h2>
+  {intro && <p class="lead">{intro}</p>}
+</header>
+
+<style>
+  .section-heading { max-width: 50rem; margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+  .section-heading h2 { margin-bottom: 1.25rem; }
+  .section-heading .lead { max-width: 42rem; margin-bottom: 0; }
+  .center { margin-inline: auto; text-align: center; }
+  .center :global(.eyebrow) { justify-content: center; }
+  .light h2 { color: white; }
+  .light .lead { color: rgba(255,255,255,.7); }
+</style>

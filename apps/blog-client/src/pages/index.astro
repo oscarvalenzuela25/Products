@@ -1,7 +1,6 @@
 ---
 import useDemo from "../hooks/useDemo";
 import Layout from "../layouts/Layout.astro";
-import Button from "../components/Button";
 
 const { renderDemo } = useDemo();
 
@@ -17,7 +16,6 @@ const DemoPage = renderDemo({
   ) : (
     <Layout title="Inicio">
       <h1>Hola mundo esto es el inicio</h1>
-      <Button client:load>Button Test</Button>
     </Layout>
   )
 }

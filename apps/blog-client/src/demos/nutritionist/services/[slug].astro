@@ -1,5 +1,85 @@
 ---
+import NutritionistLayout from "../components/NutritionistLayout.astro";
+import { services } from "../data";
+
 const { slug } = Astro.params;
+const service = services.find((item) => item.slug === slug);
 ---
 
-<h1>Services: {slug}</h1>
+{service ? (
+  <NutritionistLayout
+    title={`${service.title} | Claudia Valenzuela Nutricionista`}
+    description={service.short}
+    currentPath="/services"
+    image={service.image}
+  >
+    <section class="service-hero">
+      <div class="shell breadcrumb"><a href="/services">Consultas</a><span aria-hidden="true">/</span><span>{service.title}</span></div>
+      <div class="shell service-hero-grid">
+        <div>
+          <p class="eyebrow">Consulta {service.number}</p>
+          <h1>{service.title}</h1>
+          <p class="lead">{service.intro}</p>
+          <div class="service-facts"><span>{service.duration}</span><span>{service.price}</span></div>
+          <a class="button" href="/contact">Reservar esta consulta <span aria-hidden="true">↗</span></a>
+        </div>
+        <figure><img src={service.image} alt={`Alimentos frescos relacionados con ${service.title}`} width="820" height="900" fetchpriority="high" /><figcaption>Un plan pensado para acompañarte, no para controlarte.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section detail-section">
+      <div class="shell detail-grid">
+        <div><p class="eyebrow">Qué incluye</p><h2>Todo lo necesario para pasar de la información a la acción.</h2></div>
+        <ul>{service.includes.map((item) => <li><span aria-hidden="true">✓</span>{item}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="section ideal-section">
+      <div class="shell ideal-card">
+        <span class="ideal-number" aria-hidden="true">{service.number}</span>
+        <div><p class="eyebrow">Este espacio puede ser para ti si…</p><h2>{service.idealFor}</h2></div>
+      </div>
+    </section>
+
+    <section class="section next-step">
+      <div class="shell next-grid">
+        <div><p class="eyebrow">Siguiente paso</p><h2>Tu primera sesión no necesita preparación perfecta.</h2></div>
+        <div><p>Lleva tus dudas, exámenes recientes si los tienes y una idea general de lo que te gustaría cambiar. El resto lo ordenamos en consulta.</p><a class="button button-light" href="/contact">Revisar disponibilidad <span aria-hidden="true">→</span></a></div>
+      </div>
+    </section>
+  </NutritionistLayout>
+) : (
+  <NutritionistLayout title="Consulta no encontrada | Claudia Valenzuela" description="La consulta que buscas no está disponible." noIndex>
+    <section class="section missing"><div class="shell"><p class="eyebrow">Consulta no encontrada</p><h1>Este enlace ya no está disponible.</h1><a class="button" href="/services">Ver todas las consultas</a></div></section>
+  </NutritionistLayout>
+)}
+
+<style>
+  .service-hero { padding: 1.5rem 0 clamp(5rem, 9vw, 8rem); background: var(--surface); }
+  .breadcrumb { display: flex; gap: .65rem; margin-bottom: 3rem; color: var(--muted); font-size: .7rem; }
+  .breadcrumb a { color: var(--green); font-weight: 700; }
+  .service-hero-grid { display: grid; grid-template-columns: 1fr .72fr; align-items: center; gap: clamp(3rem, 8vw, 7rem); }
+  .service-hero h1 { max-width: 10ch; margin-bottom: 1.5rem; font-size: clamp(3.2rem, 7vw, 6.5rem); }
+  .service-hero .lead { max-width: 38rem; }
+  .service-facts { display: flex; gap: 2rem; margin: 2rem 0; border-block: 1px solid var(--border); padding: 1rem 0; color: var(--greenDark); font-size: .75rem; font-weight: 700; }
+  .service-hero figure { margin: 0; }
+  .service-hero figure img { width: 100%; aspect-ratio: .86; border-radius: 45% 45% 2rem 2rem; object-fit: cover; }
+  .service-hero figcaption { margin-top: 1rem; color: var(--muted); font-family: var(--font-display); font-size: 1rem; text-align: center; }
+  .detail-section { background: var(--cream); }
+  .detail-grid { display: grid; grid-template-columns: 1fr .8fr; gap: clamp(3rem, 9vw, 8rem); }
+  .detail-grid h2 { max-width: 13ch; }
+  .detail-grid ul { margin: 0; padding: 0; list-style: none; }
+  .detail-grid li { display: flex; gap: 1rem; border-bottom: 1px solid var(--border); padding: 1.25rem 0; color: var(--muted); }
+  .detail-grid li span { color: var(--terracotta); font-weight: 700; }
+  .ideal-section { padding-top: 0; background: var(--cream); }
+  .ideal-card { position: relative; overflow: hidden; border-radius: 2rem; padding: clamp(3rem, 7vw, 6rem); background: var(--limeLight); }
+  .ideal-card h2 { max-width: 18ch; margin-bottom: 0; font-size: clamp(2.3rem, 5vw, 4.2rem); }
+  .ideal-number { position: absolute; right: 2rem; bottom: -3rem; color: rgba(47,107,79,.08); font-family: var(--font-display); font-size: 16rem; line-height: 1; }
+  .next-step { background: var(--terracotta); color: white; }
+  .next-grid { display: grid; grid-template-columns: 1fr .7fr; gap: clamp(3rem, 8vw, 8rem); }
+  .next-grid .eyebrow { color: white; }
+  .next-grid p { color: rgba(255,255,255,.8); }
+  .missing { min-height: 65vh; background: var(--surface); }
+  .missing h1 { max-width: 12ch; font-size: clamp(3rem, 7vw, 6rem); }
+  @media (max-width: 800px) { .service-hero-grid, .detail-grid, .next-grid { grid-template-columns: 1fr; } .service-hero figure { max-width: 34rem; } }
+</style>

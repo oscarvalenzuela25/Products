@@ -1,5 +1,21 @@
 ---
+import useDemo from "../hooks/useDemo";
+import Layout from "../layouts/Layout.astro";
 
+const { renderDemo } = useDemo();
+
+const DemoPage = renderDemo({
+  demoKey: "nutritionist",
+  path: "notFound",
+});
 ---
 
-<h1>Not Found</h1>
+{
+  DemoPage ? (
+    <DemoPage />
+  ) : (
+    <Layout title="Error 404">
+      <h1>Page Not Found</h1>
+    </Layout>
+  )
+}

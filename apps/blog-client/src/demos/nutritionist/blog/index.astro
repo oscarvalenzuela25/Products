@@ -1,7 +1,59 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import NutritionistLayout from "../components/NutritionistLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { articles } from "../data";
+
+const [featured, ...rest] = articles;
 ---
 
-<Layout title="Blog">
-  <h1>Hola mundo esto es demo nutritionist</h1>
-</Layout>
+<NutritionistLayout
+  title="Recursos de nutrición sin dietas | Claudia Valenzuela"
+  description="Artículos claros sobre relación con la comida, nutrición práctica, bienestar digestivo y hábitos sostenibles."
+  currentPath="/blog"
+>
+  <PageHero
+    eyebrow="Recursos"
+    title="Información para cuidarte sin vivir pendiente de la comida."
+    intro="Lecturas breves, herramientas concretas y respuestas responsables para filtrar el ruido nutricional de internet."
+    compact
+  />
+
+  <section class="section featured-section"><div class="shell"><ArticleCard article={featured} featured /></div></section>
+
+  <section class="section articles-section">
+    <div class="shell">
+      <div class="filter-heading"><div><p class="eyebrow">Últimas lecturas</p><h2>Para guardar y volver.</h2></div><nav aria-label="Categorías de recursos"><a class="active" href="/blog">Todos</a><a href="/blog">Nutrición práctica</a><a href="/blog">Relación con la comida</a></nav></div>
+      <div class="articles-grid">{rest.map((article) => <ArticleCard article={article} />)}</div>
+    </div>
+  </section>
+
+  <section class="newsletter-section">
+    <div class="shell newsletter-card">
+      <div><p class="eyebrow">Carta de los domingos</p><h2>Una idea útil. Cero culpa. Cada dos semanas.</h2><p>Recibe una lectura breve y una herramienta que puedas probar sin reorganizar toda tu vida.</p></div>
+      <form action="/thanks" method="get"><label for="newsletter-email">Tu correo</label><div><input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.cl" required /><button class="button" type="submit">Quiero recibirla <span aria-hidden="true">→</span></button></div><small>Sin spam. Puedes salir cuando quieras.</small></form>
+    </div>
+  </section>
+</NutritionistLayout>
+
+<style>
+  .featured-section { background: var(--cream); }
+  .articles-section { padding-top: 0; background: var(--cream); }
+  .filter-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+  .filter-heading h2 { margin-bottom: 0; font-size: clamp(2.5rem, 5vw, 4rem); }
+  .filter-heading nav { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .filter-heading nav a { min-height: 2.5rem; border: 1px solid var(--border); border-radius: 999px; padding: .55rem .9rem; color: var(--muted); font-size: .7rem; font-weight: 700; }
+  .filter-heading nav a:hover, .filter-heading nav a.active { border-color: var(--green); background: var(--green); color: white; }
+  .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .newsletter-section { padding: 0 0 clamp(5rem, 9vw, 9rem); background: var(--cream); }
+  .newsletter-card { display: grid; grid-template-columns: 1fr .8fr; align-items: center; gap: clamp(2rem, 7vw, 7rem); border-radius: 2rem; padding: clamp(2.5rem, 6vw, 5rem); background: var(--limeLight); }
+  .newsletter-card h2 { font-size: clamp(2.5rem, 5vw, 4rem); }
+  .newsletter-card > div > p:last-child { color: var(--muted); }
+  form label { display: block; margin-bottom: .55rem; color: var(--greenDark); font-size: .75rem; font-weight: 700; }
+  form > div { display: flex; gap: .5rem; }
+  input { min-width: 0; flex: 1; min-height: 3.4rem; border: 1px solid var(--border); border-radius: 999px; padding: .85rem 1.1rem; background: white; color: var(--text); }
+  input:focus { border-color: var(--green); }
+  form small { display: block; margin-top: .6rem; color: var(--muted); font-size: .65rem; }
+  @media (max-width: 800px) { .filter-heading, .newsletter-card { align-items: flex-start; grid-template-columns: 1fr; } .filter-heading { flex-direction: column; } }
+  @media (max-width: 620px) { .articles-grid { grid-template-columns: 1fr; } form > div { align-items: stretch; flex-direction: column; } }
+</style>

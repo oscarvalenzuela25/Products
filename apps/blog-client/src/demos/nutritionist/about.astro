@@ -1,5 +1,106 @@
 ---
-
+import NutritionistLayout from "./components/NutritionistLayout.astro";
+import PageHero from "./components/PageHero.astro";
+import SectionHeading from "./components/SectionHeading.astro";
 ---
 
-<h1>About nutricionista</h1>
+<NutritionistLayout
+  title="Sobre Claudia Valenzuela | Nutricionista"
+  description="Conoce a Claudia Valenzuela, nutricionista con más de 6 años de experiencia y un enfoque cercano, práctico y basado en evidencia."
+  currentPath="/about"
+>
+  <PageHero
+    eyebrow="Sobre mí"
+    title="Ciencia, escucha y mucho respeto por tu historia."
+    intro="Soy Claudia, nutricionista. Acompaño a personas que quieren cuidar su salud sin poner su vida al servicio de una dieta."
+    image="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1200&q=85"
+    imageAlt="Retrato de Claudia sonriendo"
+  />
+
+  <section class="section story-section">
+    <div class="shell story-grid">
+      <div>
+        <p class="eyebrow">Por qué hago esto</p>
+        <h2>La consulta cambió cuando aprendí a preguntar antes de indicar.</h2>
+      </div>
+      <div class="story-copy">
+        <p class="lead">Comencé mi práctica pensando que un buen plan debía ser perfecto. Muy pronto entendí que lo verdaderamente útil era construir herramientas junto a cada persona.</p>
+        <p>Me titulé en Nutrición y Dietética y durante mis primeros años trabajé en atención clínica ambulatoria. Allí conocí historias marcadas por reglas, culpa y mucha información contradictoria.</p>
+        <p>Desde entonces me he formado en conducta alimentaria, educación en diabetes, salud digestiva y entrevista motivacional. Hoy combino esa base con algo igual de importante: escuchar el contexto antes de proponer cambios.</p>
+        <p>No prometo soluciones rápidas. Sí ofrezco una mirada completa, explicaciones claras y un proceso donde siempre sabrás por qué estamos trabajando cada objetivo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark values-section">
+    <div class="shell">
+      <SectionHeading eyebrow="Lo que guía mi consulta" title="Un espacio para aprender, no para ser evaluado." light />
+      <div class="values-grid">
+        <article><span>01</span><h3>Sin juicio</h3><p>Tu historia alimentaria tiene razones. Las comprendemos antes de intentar cambiarla.</p></article>
+        <article><span>02</span><h3>Con evidencia</h3><p>Recomendaciones actuales, explicadas en simple y ajustadas a tus antecedentes de salud.</p></article>
+        <article><span>03</span><h3>Con flexibilidad</h3><p>Una pauta es una herramienta, no una prueba. Siempre existe más de una forma de cuidarte.</p></article>
+        <article><span>04</span><h3>En equipo</h3><p>Cuando lo necesitas, coordinamos con medicina, psicología u otros profesionales tratantes.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section experience-section">
+    <div class="shell experience-grid">
+      <div class="experience-photo">
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=85" alt="Ingredientes frescos preparados en una mesa de cocina" width="820" height="980" loading="lazy" />
+      </div>
+      <div>
+        <p class="eyebrow">Experiencia y formación</p>
+        <h2>Más de seis años traduciendo la nutrición a la vida cotidiana.</h2>
+        <ol class="timeline">
+          <li><span>2026</span><div><strong>Consulta privada integral</strong><p>Atención presencial en Providencia y acompañamiento online en todo Chile.</p></div></li>
+          <li><span>2023</span><div><strong>Diplomado en conducta alimentaria</strong><p>Profundización en alimentación consciente, estigma de peso y abordajes no restrictivos.</p></div></li>
+          <li><span>2021</span><div><strong>Nutrición clínica ambulatoria</strong><p>Acompañamiento de personas con diabetes, alteraciones digestivas y riesgo cardiovascular.</p></div></li>
+          <li><span>2019</span><div><strong>Título en Nutrición y Dietética</strong><p>Formación universitaria con enfoque en salud pública y atención clínica.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section personal-section">
+    <div class="shell personal-card">
+      <div>
+        <p class="eyebrow">Fuera de la consulta</p>
+        <h2>También creo en las sobremesas largas, el pan recién hecho y cocinar sin receta.</h2>
+      </div>
+      <div>
+        <p>La alimentación ocupa un lugar importante en mi vida, pero no todo el lugar. Me gusta recorrer ferias, caminar por parques de Santiago y coleccionar recetas escritas a mano por mi familia.</p>
+        <a class="button" href="/contact">Conversemos sobre tu proceso <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+</NutritionistLayout>
+
+<style>
+  .story-section { background: var(--cream); }
+  .story-grid { display: grid; grid-template-columns: 1fr .8fr; gap: clamp(3rem, 9vw, 8rem); }
+  .story-grid h2 { max-width: 12ch; }
+  .story-copy p:not(.lead) { color: var(--muted); }
+  .values-section { padding: clamp(5rem, 9vw, 8rem) 0; }
+  .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .values-grid article { min-height: 20rem; border-block: 1px solid rgba(255,255,255,.16); border-left: 1px solid rgba(255,255,255,.16); padding: 1.75rem; }
+  .values-grid article:last-child { border-right: 1px solid rgba(255,255,255,.16); }
+  .values-grid span { color: var(--sage); font-size: .7rem; }
+  .values-grid h3 { margin-top: 5rem; color: white; }
+  .values-grid p { color: rgba(255,255,255,.66); font-size: .86rem; }
+  .experience-section { background: var(--surface); }
+  .experience-grid { display: grid; grid-template-columns: .75fr 1fr; align-items: center; gap: clamp(3rem, 9vw, 8rem); }
+  .experience-photo img { width: 100%; aspect-ratio: .78; border-radius: 12rem 12rem 1.5rem 1.5rem; object-fit: cover; }
+  .timeline { margin: 3rem 0 0; padding: 0; list-style: none; }
+  .timeline li { display: grid; grid-template-columns: 4rem 1fr; gap: 1rem; border-top: 1px solid var(--border); padding: 1.2rem 0; }
+  .timeline li > span { color: var(--terracotta); font-size: .75rem; font-weight: 700; }
+  .timeline strong { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; }
+  .timeline p { margin: .35rem 0 0; color: var(--muted); font-size: .82rem; }
+  .personal-section { background: var(--cream); }
+  .personal-card { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(2rem, 6vw, 6rem); border-radius: 2rem; padding: clamp(2.5rem, 6vw, 5rem); background: var(--limeLight); }
+  .personal-card h2 { margin-bottom: 0; font-size: clamp(2.4rem, 5vw, 4rem); }
+  .personal-card > div:last-child { display: flex; align-items: flex-start; flex-direction: column; justify-content: space-between; }
+  .personal-card > div:last-child p { color: var(--muted); }
+  @media (max-width: 850px) { .story-grid, .experience-grid, .personal-card { grid-template-columns: 1fr; } .values-grid { grid-template-columns: 1fr 1fr; } .personal-card > div:last-child { gap: 1.5rem; } }
+  @media (max-width: 520px) { .values-grid { grid-template-columns: 1fr; } .values-grid article { min-height: 15rem; border-right: 1px solid rgba(255,255,255,.16); } }
+</style>

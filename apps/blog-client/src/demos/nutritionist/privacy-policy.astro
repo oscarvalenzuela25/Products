@@ -1,5 +1,26 @@
 ---
-
+import NutritionistLayout from "./components/NutritionistLayout.astro";
 ---
 
-<h1>Privacy Policy</h1>
+<NutritionistLayout title="Política de privacidad | Claudia Valenzuela" description="Información sobre el tratamiento de datos personales en el sitio de Claudia Valenzuela Nutrición." noIndex>
+  <section class="legal-hero"><div class="shell"><p class="eyebrow">Información legal</p><h1>Política de privacidad</h1><p>Última actualización: 2 de agosto de 2026</p></div></section>
+  <section class="section legal-content"><div class="shell legal-grid"><aside><strong>En esta página</strong><a href="#responsable">Responsable</a><a href="#datos">Datos recopilados</a><a href="#uso">Cómo se usan</a><a href="#derechos">Tus derechos</a></aside><article><p class="lead">Esta política explica de forma sencilla qué datos se solicitan a través de este sitio demostrativo y cómo se protegerían en una implementación real.</p><section id="responsable"><h2>1. Responsable del tratamiento</h2><p>La responsable sería Claudia Valenzuela Nutrición, con domicilio profesional en Providencia, Santiago de Chile, y correo de contacto hola@claudiarinutricion.cl.</p></section><section id="datos"><h2>2. Datos que recopilamos</h2><p>El formulario de contacto solicita nombre, correo, teléfono opcional, preferencia de atención, motivo de consulta y el mensaje que decidas compartir. No debes enviar diagnósticos sensibles ni información clínica urgente por este medio.</p></section><section id="uso"><h2>3. Para qué se utilizarían</h2><p>Los datos serían utilizados únicamente para responder tu solicitud, coordinar una consulta y enviar comunicaciones que hayas aceptado expresamente. No se venderían ni cederían con fines comerciales.</p></section><section><h2>4. Conservación y seguridad</h2><p>Los mensajes se conservarían durante el tiempo necesario para gestionar la solicitud y cumplir obligaciones profesionales. Se aplicarían medidas razonables de acceso limitado y resguardo.</p></section><section id="derechos"><h2>5. Tus derechos</h2><p>Puedes solicitar acceso, rectificación o eliminación de tus datos escribiendo a hola@claudiarinutricion.cl. También puedes retirar tu consentimiento para comunicaciones futuras en cualquier momento.</p></section><div class="demo-note"><strong>Nota de demo</strong><p>Los datos profesionales y de contacto de este sitio son ficticios y se presentan exclusivamente con fines demostrativos.</p></div></article></div></section>
+</NutritionistLayout>
+
+<style>
+  .legal-hero { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--surface); }
+  .legal-hero h1 { margin-bottom: 1rem; font-size: clamp(3.3rem, 7vw, 6rem); }
+  .legal-hero p:last-child { color: var(--muted); font-size: .75rem; }
+  .legal-content { background: var(--cream); }
+  .legal-grid { display: grid; grid-template-columns: .3fr 1fr; gap: clamp(3rem, 9vw, 8rem); }
+  aside { position: sticky; top: 2rem; display: flex; align-self: start; flex-direction: column; border-top: 2px solid var(--terracotta); padding-top: 1rem; }
+  aside strong { margin-bottom: .75rem; font-size: .7rem; text-transform: uppercase; }
+  aside a { min-height: 2rem; color: var(--muted); font-size: .72rem; }
+  article { max-width: 48rem; }
+  article > section { margin: 4rem 0; }
+  article h2 { font-size: clamp(2rem, 4vw, 3rem); }
+  article section p { color: var(--muted); }
+  .demo-note { border-radius: 1rem; padding: 1.5rem; background: var(--limeLight); }
+  .demo-note p { margin: .4rem 0 0; color: var(--muted); font-size: .82rem; }
+  @media (max-width: 720px) { .legal-grid { grid-template-columns: 1fr; } aside { position: static; } }
+</style>

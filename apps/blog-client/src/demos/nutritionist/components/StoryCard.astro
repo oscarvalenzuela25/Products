@@ -1,0 +1,45 @@
+---
+interface Props {
+  story: {
+    slug: string;
+    category: string;
+    title: string;
+    excerpt: string;
+    metric: string;
+    image: string;
+  };
+  index?: number;
+}
+
+const { story, index = 0 } = Astro.props;
+---
+
+<article class:list={["story-card", { reverse: index % 2 === 1 }]}>
+  <a class="story-image" href={`/projects/${story.slug}`} tabindex="-1" aria-hidden="true">
+    <img src={story.image} alt="" width="840" height="620" loading="lazy" />
+    <span>0{index + 1}</span>
+  </a>
+  <div class="story-copy">
+    <p class="eyebrow">{story.category}</p>
+    <h2><a href={`/projects/${story.slug}`}>{story.title}</a></h2>
+    <p class="lead">{story.excerpt}</p>
+    <div class="story-meta">
+      <span>{story.metric}</span>
+      <a class="text-link" href={`/projects/${story.slug}`}>Ver historia <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .story-card { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(2.5rem, 7vw, 7rem); }
+  .story-card + .story-card { margin-top: clamp(5rem, 10vw, 10rem); }
+  .story-card.reverse .story-image { order: 2; }
+  .story-image { position: relative; display: block; }
+  .story-image img { width: 100%; aspect-ratio: 1.15; border-radius: 3rem 1rem 3rem 1rem; object-fit: cover; }
+  .story-image > span { position: absolute; top: -1.4rem; right: -1rem; display: grid; width: 4.5rem; height: 4.5rem; place-items: center; border-radius: 50%; background: var(--yellow); color: var(--greenDark); font-family: var(--font-display); font-size: 1.4rem; }
+  .story-copy h2 { margin-bottom: 1.5rem; font-size: clamp(2.45rem, 5vw, 4.5rem); }
+  .story-copy .lead { margin-bottom: 2rem; }
+  .story-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--border); padding-top: 1.25rem; }
+  .story-meta > span { color: var(--muted); font-size: .75rem; }
+  @media (max-width: 760px) { .story-card { grid-template-columns: 1fr; } .story-card.reverse .story-image { order: 0; } }
+</style>

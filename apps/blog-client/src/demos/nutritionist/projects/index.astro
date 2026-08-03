@@ -1,7 +1,34 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
+import NutritionistLayout from "../components/NutritionistLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import StoryCard from "../components/StoryCard.astro";
+import { stories } from "../data";
 ---
 
-<Layout title="Blog">
-  <h1>Hola mundo esto es demo nutritionist</h1>
-</Layout>
+<NutritionistLayout
+  title="Historias de procesos nutricionales | Claudia Valenzuela"
+  description="Historias reales adaptadas para proteger la privacidad: procesos nutricionales sostenibles, sin promesas rápidas ni antes y después."
+  currentPath="/projects"
+>
+  <PageHero
+    eyebrow="Historias de procesos"
+    title="Los cambios que importan no siempre caben en una balanza."
+    intro="Estas historias reúnen aprendizajes frecuentes de consulta. Los nombres y algunos detalles fueron modificados para cuidar la privacidad."
+    compact
+  />
+  <section class="privacy-note"><div class="shell"><span aria-hidden="true">✦</span><p>No mostramos “antes y después”. Mostramos procesos, herramientas y mejoras que sí se pueden sostener.</p></div></section>
+  <section class="section stories-section"><div class="shell">{stories.map((story, index) => <StoryCard story={story} index={index} />)}</div></section>
+  <section class="section-dark stories-cta"><div class="shell"><p class="eyebrow eyebrow-light">Tu historia será diferente</p><h2>Y eso es exactamente lo que esperamos.</h2><p>Cada proceso se diseña desde cero. Podemos empezar por entender qué necesitas hoy.</p><a class="button button-accent" href="/contact">Agendar una conversación <span aria-hidden="true">→</span></a></div></section>
+</NutritionistLayout>
+
+<style>
+  .privacy-note { border-block: 1px solid var(--border); background: var(--yellow); }
+  .privacy-note .shell { display: flex; align-items: center; justify-content: center; gap: 1rem; padding-block: 1rem; }
+  .privacy-note span { color: var(--terracotta); }
+  .privacy-note p { margin: 0; color: var(--greenDark); font-size: .78rem; font-weight: 600; text-align: center; }
+  .stories-section { background: var(--cream); }
+  .stories-cta { padding: clamp(5rem, 9vw, 8rem) 0; text-align: center; }
+  .stories-cta .eyebrow { justify-content: center; }
+  .stories-cta h2 { max-width: 16ch; margin-inline: auto; }
+  .stories-cta > .shell > p:not(.eyebrow) { max-width: 38rem; margin: 1.5rem auto 2rem; color: rgba(255,255,255,.7); }
+</style>

@@ -1,5 +1,27 @@
 ---
+import useDemo from "../../hooks/useDemo";
+import Layout from "../../layouts/Layout.astro";
+import { articles } from "../../demos/nutritionist/data";
+
+export function getStaticPaths() {
+  return articles.map((article) => ({ params: { slug: article.slug } }));
+}
+
 const { slug } = Astro.params;
+const { renderDemo } = useDemo();
+
+const DemoPage = renderDemo({
+  demoKey: "nutritionist",
+  path: "blogDetail",
+});
 ---
 
-<h1>Blog: {slug}</h1>
+{
+  DemoPage ? (
+    <DemoPage />
+  ) : (
+    <Layout title="Blog">
+      <h1>Blog: {slug}</h1>
+    </Layout>
+  )
+}

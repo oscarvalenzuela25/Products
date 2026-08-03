@@ -1,5 +1,33 @@
 ---
-
+import NutritionistLayout from "./components/NutritionistLayout.astro";
 ---
 
-<h1>Thanks</h1>
+<NutritionistLayout title="Gracias por escribir | Claudia Valenzuela" description="Tu mensaje fue recibido. Claudia te responderá dentro de un día hábil." noIndex>
+  <section class="thanks-section">
+    <div class="thanks-leaf" aria-hidden="true"></div>
+    <div class="shell thanks-card">
+      <span class="thanks-icon" aria-hidden="true">✓</span>
+      <p class="eyebrow">Mensaje recibido</p>
+      <h1>Gracias por dar el primer paso.</h1>
+      <p class="lead">Revisaré tu mensaje y te responderé personalmente dentro de un día hábil con horarios disponibles.</p>
+      <div class="what-next"><h2>Mientras tanto</h2><ul><li>Revisa tu bandeja de spam por si mi respuesta llega ahí.</li><li>No necesitas registrar comidas ni pesarte antes de la consulta.</li><li>Si tienes exámenes recientes, puedes tenerlos a mano.</li></ul></div>
+      <div class="thanks-actions"><a class="button" href="/">Volver al inicio</a><a class="text-link" href="/blog">Explorar recursos <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+</NutritionistLayout>
+
+<style>
+  .thanks-section { position: relative; overflow: hidden; display: grid; min-height: 72vh; place-items: center; padding: clamp(4rem, 9vw, 8rem) 0; background: var(--surface); }
+  .thanks-card { position: relative; z-index: 1; max-width: 50rem; text-align: center; }
+  .thanks-icon { display: grid; width: 4.5rem; height: 4.5rem; place-items: center; margin: 0 auto 1.5rem; border-radius: 50%; background: var(--yellow); color: var(--greenDark); font-size: 1.5rem; font-weight: 700; }
+  .thanks-card .eyebrow { justify-content: center; }
+  .thanks-card h1 { max-width: 11ch; margin-inline: auto; font-size: clamp(3.5rem, 8vw, 6.5rem); }
+  .thanks-card .lead { max-width: 38rem; margin-inline: auto; }
+  .what-next { max-width: 38rem; margin: 2.5rem auto; border-radius: 1.25rem; padding: 1.5rem 2rem; background: white; text-align: left; }
+  .what-next h2 { font-size: 1.5rem; }
+  .what-next ul { margin: 0; padding-left: 1.2rem; color: var(--muted); font-size: .82rem; }
+  .what-next li + li { margin-top: .45rem; }
+  .thanks-actions { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+  .thanks-leaf { position: absolute; width: 25rem; height: 12rem; right: -10rem; top: 10%; border-radius: 90% 10% 90% 10%; background: var(--limeLight); transform: rotate(-30deg); }
+  @media (max-width: 520px) { .thanks-actions { align-items: center; flex-direction: column; } }
+</style>
