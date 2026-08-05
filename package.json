@@ -2,19 +2,17 @@
   "name": "products",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "dev:blog-client": "turbo dev --filter=blog-client",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
-  },
-  "devDependencies": {
-    "prettier": "^3.7.4",
-    "turbo": "^2.10.8"
+    "dev:blog-client": "npm --prefix apps/blog-client run dev",
+    "dev:blog-cms": "npm --prefix apps/blog-cms run dev",
+    "build": "npm run build:blog-client && npm run build:blog-cms",
+    "build:blog-client": "npm --prefix apps/blog-client run build",
+    "build:blog-cms": "npm --prefix apps/blog-cms run build",
+    "install:blog-client": "npm --prefix apps/blog-client install",
+    "install:blog-cms": "npm --prefix apps/blog-cms install",
+    "install:all": "npm run install:blog-client && npm run install:blog-cms"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.12.0"
   },
   "devEngines": {
     "packageManager": {
@@ -22,9 +20,5 @@
       "version": ">=10.x <=11.x",
       "onFail": "warn"
     }
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  }
 }

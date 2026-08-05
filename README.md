@@ -1,27 +1,50 @@
 # Products
 
-Monorepo base administrado con Turborepo y npm.
+Repositorio que agrupa aplicaciones npm independientes.
 
 ## Estructura
 
-- `apps/`: aplicaciones del monorepo.
-- `packages/`: paquetes y configuraciones compartidas.
+- `apps/blog-client`: frontend Astro del blog.
+- `apps/blog-cms`: CMS Strapi del blog.
 
-Ambas carpetas están vacías inicialmente y listas para recibir nuevos workspaces.
+Cada aplicación administra su propio `package.json`, `package-lock.json` y
+`node_modules`. La raíz no comparte dependencias ni utiliza npm workspaces o
+Turborepo; su `package.json` solamente ofrece accesos directos a los comandos
+de cada aplicación.
 
 ## Requisitos
 
-- Node.js 18 o superior.
+- Node.js 22.12 o superior.
 - npm 10 u 11.
 
-## Comandos
+## Instalación
+
+Para instalar ambas aplicaciones desde la raíz:
 
 ```sh
-npm run dev
-npm run build
-npm run lint
-npm run check-types
-npm run format
+npm run install:all
 ```
 
-Las tareas de Turborepo se ejecutan únicamente en los workspaces que definan el script correspondiente.
+También pueden instalarse individualmente:
+
+```sh
+npm run install:blog-client
+npm run install:blog-cms
+```
+
+## Desarrollo
+
+Ejecuta cada aplicación en una terminal independiente:
+
+```sh
+npm run dev:blog-client
+npm run dev:blog-cms
+```
+
+## Builds
+
+```sh
+npm run build
+npm run build:blog-client
+npm run build:blog-cms
+```
